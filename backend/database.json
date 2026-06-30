@@ -1,0 +1,692 @@
+{
+  "car_categories": [
+    {
+      "category_id": 1,
+      "category_name": "SUV",
+      "description": "Sport Utility Vehicle"
+    },
+    {
+      "category_id": 2,
+      "category_name": "Sedan",
+      "description": "Comfort family car"
+    },
+    {
+      "category_id": 3,
+      "category_name": "Hatchback",
+      "description": "Small city car"
+    },
+    {
+      "category_id": 4,
+      "category_name": "Truck",
+      "description": "Heavy load vehicle"
+    },
+    {
+      "category_id": 5,
+      "category_name": "Luxury",
+      "description": "High-end premium cars"
+    },
+    {
+      "category_id": 6,
+      "category_name": "Sports",
+      "description": "High performance cars"
+    },
+    {
+      "category_id": 7,
+      "category_name": "Van",
+      "description": "Passenger transport"
+    },
+    {
+      "category_id": 8,
+      "category_name": "Electric",
+      "description": "EV cars"
+    },
+    {
+      "category_id": 9,
+      "category_name": "Hybrid",
+      "description": "Fuel-efficient cars"
+    },
+    {
+      "category_id": 10,
+      "category_name": "Offroad",
+      "description": "Rough terrain cars"
+    }
+  ],
+  "users": [
+    {
+      "user_id": 1,
+      "username": "admin1",
+      "password": "1234",
+      "role": "ADMIN",
+      "created_at": "2026-06-28"
+    },
+    {
+      "user_id": 2,
+      "username": "staff1",
+      "password": "1234",
+      "role": "STAFF",
+      "created_at": "2026-06-28"
+    },
+    {
+      "user_id": 3,
+      "username": "staff2",
+      "password": "1234",
+      "role": "STAFF",
+      "created_at": "2026-06-28"
+    },
+    {
+      "user_id": 4,
+      "username": "staff3",
+      "password": "1234",
+      "role": "STAFF",
+      "created_at": "2026-06-28"
+    },
+    {
+      "user_id": 5,
+      "username": "staff4",
+      "password": "1234",
+      "role": "STAFF",
+      "created_at": "2026-06-28"
+    },
+    {
+      "user_id": 6,
+      "username": "admin",
+      "password": "12345",
+      "role": "STAFF",
+      "created_at": "2026-06-28"
+    }
+  ],
+  "customers": [
+    {
+      "customer_id": 1,
+      "full_name": "Ali Hassan",
+      "phone": "617000001",
+      "email": "ali@gmail.com",
+      "national_id": "ID001",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 2,
+      "full_name": "Asha Noor",
+      "phone": "617000002",
+      "email": "asha@gmail.com",
+      "national_id": "ID002",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 3,
+      "full_name": "Omar Ali",
+      "phone": "617000003",
+      "email": "omar@gmail.com",
+      "national_id": "ID003",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 4,
+      "full_name": "Fatima Yusuf",
+      "phone": "617000004",
+      "email": "fatima@gmail.com",
+      "national_id": "ID004",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 5,
+      "full_name": "Hassan Jama",
+      "phone": "617000005",
+      "email": "hassan@gmail.com",
+      "national_id": "ID005",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 6,
+      "full_name": "Maryan Abdi",
+      "phone": "617000006",
+      "email": "maryan@gmail.com",
+      "national_id": "ID006",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 7,
+      "full_name": "Ahmed Farah",
+      "phone": "617000007",
+      "email": "ahmed@gmail.com",
+      "national_id": "ID007",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 8,
+      "full_name": "Hodan Ali",
+      "phone": "617000008",
+      "email": "hodan@gmail.com",
+      "national_id": "ID008",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 9,
+      "full_name": "Ismail Noor",
+      "phone": "617000009",
+      "email": "ismail@gmail.com",
+      "national_id": "ID009",
+      "created_at": "2026-06-28"
+    },
+    {
+      "customer_id": 10,
+      "full_name": "Zahra Mohamed",
+      "phone": "617000010",
+      "email": "zahra@gmail.com",
+      "national_id": "ID010",
+      "created_at": "2026-06-28"
+    }
+  ],
+  "cars": [
+    {
+      "car_id": 1,
+      "category_id": 1,
+      "brand": "Toyota",
+      "model": "RAV4",
+      "year": 2022,
+      "daily_rate": 50,
+      "status": "AVAILABLE",
+      "plate_number": "AA001"
+    },
+    {
+      "car_id": 2,
+      "category_id": 2,
+      "brand": "Toyota",
+      "model": "Corolla",
+      "year": 2021,
+      "daily_rate": 30,
+      "status": "AVAILABLE",
+      "plate_number": "AA002"
+    },
+    {
+      "car_id": 3,
+      "category_id": 3,
+      "brand": "Honda",
+      "model": "Fit",
+      "year": 2020,
+      "daily_rate": 25,
+      "status": "AVAILABLE",
+      "plate_number": "AA003"
+    },
+    {
+      "car_id": 4,
+      "category_id": 4,
+      "brand": "Ford",
+      "model": "Ranger",
+      "year": 2023,
+      "daily_rate": 70,
+      "status": "AVAILABLE",
+      "plate_number": "AA004"
+    },
+    {
+      "car_id": 5,
+      "category_id": 5,
+      "brand": "BMW",
+      "model": "X5",
+      "year": 2023,
+      "daily_rate": 120,
+      "status": "AVAILABLE",
+      "plate_number": "AA005"
+    },
+    {
+      "car_id": 6,
+      "category_id": 6,
+      "brand": "Nissan",
+      "model": "GTR",
+      "year": 2022,
+      "daily_rate": 150,
+      "status": "AVAILABLE",
+      "plate_number": "AA006"
+    },
+    {
+      "car_id": 7,
+      "category_id": 7,
+      "brand": "Mercedes",
+      "model": "Vito",
+      "year": 2021,
+      "daily_rate": 80,
+      "status": "AVAILABLE",
+      "plate_number": "AA007"
+    },
+    {
+      "car_id": 8,
+      "category_id": 8,
+      "brand": "Tesla",
+      "model": "Model 3",
+      "year": 2023,
+      "daily_rate": 100,
+      "status": "AVAILABLE",
+      "plate_number": "AA008"
+    },
+    {
+      "car_id": 9,
+      "category_id": 9,
+      "brand": "Toyota",
+      "model": "Prius",
+      "year": 2020,
+      "daily_rate": 60,
+      "status": "AVAILABLE",
+      "plate_number": "AA009"
+    },
+    {
+      "car_id": 10,
+      "category_id": 10,
+      "brand": "Jeep",
+      "model": "Wrangler",
+      "year": 2022,
+      "daily_rate": 90,
+      "status": "AVAILABLE",
+      "plate_number": "AA010"
+    },
+    {
+      "car_id": 11,
+      "category_id": 1,
+      "brand": "bmw",
+      "model": "sedan",
+      "year": 2023,
+      "daily_rate": 80,
+      "status": "AVAILABLE",
+      "plate_number": "BB1247"
+    }
+  ],
+  "rentals": [
+    {
+      "rental_id": 1,
+      "customer_id": 1,
+      "car_id": 1,
+      "user_id": 1,
+      "start_date": "2026-06-25",
+      "end_date": "2026-06-28",
+      "total_days": 3,
+      "total_cost": 150,
+      "status": "RETURNED"
+    },
+    {
+      "rental_id": 2,
+      "customer_id": 2,
+      "car_id": 2,
+      "user_id": 1,
+      "start_date": "2026-06-26",
+      "end_date": "2026-06-28",
+      "total_days": 2,
+      "total_cost": 60,
+      "status": "RETURNED"
+    },
+    {
+      "rental_id": 3,
+      "customer_id": 3,
+      "car_id": 3,
+      "user_id": 1,
+      "start_date": "2026-06-24",
+      "end_date": "2026-06-29",
+      "total_days": 5,
+      "total_cost": 125,
+      "status": "RETURNED"
+    },
+    {
+      "rental_id": 4,
+      "customer_id": 4,
+      "car_id": 4,
+      "user_id": 1,
+      "start_date": "2026-06-27",
+      "end_date": "2026-06-28",
+      "total_days": 1,
+      "total_cost": 70,
+      "status": "RETURNED"
+    },
+    {
+      "rental_id": 5,
+      "customer_id": 5,
+      "car_id": 5,
+      "user_id": 1,
+      "start_date": "2026-06-28",
+      "end_date": "2026-07-02",
+      "total_days": 4,
+      "total_cost": 480,
+      "status": "ONGOING"
+    },
+    {
+      "rental_id": 6,
+      "customer_id": 6,
+      "car_id": 6,
+      "user_id": 1,
+      "start_date": "2026-06-26",
+      "end_date": "2026-06-28",
+      "total_days": 2,
+      "total_cost": 300,
+      "status": "RETURNED"
+    },
+    {
+      "rental_id": 7,
+      "customer_id": 7,
+      "car_id": 7,
+      "user_id": 1,
+      "start_date": "2026-06-25",
+      "end_date": "2026-06-28",
+      "total_days": 3,
+      "total_cost": 240,
+      "status": "RETURNED"
+    },
+    {
+      "rental_id": 8,
+      "customer_id": 8,
+      "car_id": 8,
+      "user_id": 1,
+      "start_date": "2026-06-28",
+      "end_date": "2026-07-04",
+      "total_days": 6,
+      "total_cost": 600,
+      "status": "ONGOING"
+    },
+    {
+      "rental_id": 9,
+      "customer_id": 9,
+      "car_id": 9,
+      "user_id": 1,
+      "start_date": "2026-06-26",
+      "end_date": "2026-06-28",
+      "total_days": 2,
+      "total_cost": 120,
+      "status": "RETURNED"
+    },
+    {
+      "rental_id": 10,
+      "customer_id": 10,
+      "car_id": 10,
+      "user_id": 1,
+      "start_date": "2026-06-28",
+      "end_date": "2026-07-05",
+      "total_days": 7,
+      "total_cost": 598.5,
+      "status": "ONGOING"
+    }
+  ],
+  "payments": [
+    {
+      "payment_id": 1,
+      "rental_id": 1,
+      "amount": 150,
+      "payment_date": "2026-06-28",
+      "method": "CASH"
+    },
+    {
+      "payment_id": 2,
+      "rental_id": 2,
+      "amount": 60,
+      "payment_date": "2026-06-28",
+      "method": "CARD"
+    },
+    {
+      "payment_id": 3,
+      "rental_id": 3,
+      "amount": 125,
+      "payment_date": "2026-06-28",
+      "method": "MOBILE"
+    },
+    {
+      "payment_id": 4,
+      "rental_id": 4,
+      "amount": 70,
+      "payment_date": "2026-06-28",
+      "method": "CASH"
+    },
+    {
+      "payment_id": 5,
+      "rental_id": 5,
+      "amount": 480,
+      "payment_date": "2026-06-28",
+      "method": "CARD"
+    },
+    {
+      "payment_id": 6,
+      "rental_id": 6,
+      "amount": 300,
+      "payment_date": "2026-06-28",
+      "method": "CASH"
+    },
+    {
+      "payment_id": 7,
+      "rental_id": 7,
+      "amount": 240,
+      "payment_date": "2026-06-28",
+      "method": "MOBILE"
+    },
+    {
+      "payment_id": 8,
+      "rental_id": 8,
+      "amount": 600,
+      "payment_date": "2026-06-28",
+      "method": "CARD"
+    },
+    {
+      "payment_id": 9,
+      "rental_id": 9,
+      "amount": 120,
+      "payment_date": "2026-06-28",
+      "method": "CASH"
+    },
+    {
+      "payment_id": 10,
+      "rental_id": 10,
+      "amount": 598.5,
+      "payment_date": "2026-06-28",
+      "method": "CARD"
+    }
+  ],
+  "maintenance": [
+    {
+      "maintenance_id": 1,
+      "car_id": 1,
+      "issue_description": "Oil change",
+      "cost": 20,
+      "status": "DONE",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 2,
+      "car_id": 2,
+      "issue_description": "Brake check",
+      "cost": 40,
+      "status": "DONE",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 3,
+      "car_id": 3,
+      "issue_description": "Engine tune",
+      "cost": 100,
+      "status": "PENDING",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 4,
+      "car_id": 4,
+      "issue_description": "Tire replacement",
+      "cost": 200,
+      "status": "DONE",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 5,
+      "car_id": 5,
+      "issue_description": "Battery check",
+      "cost": 50,
+      "status": "PENDING",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 6,
+      "car_id": 6,
+      "issue_description": "AC repair",
+      "cost": 80,
+      "status": "DONE",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 7,
+      "car_id": 7,
+      "issue_description": "Transmission fix",
+      "cost": 300,
+      "status": "PENDING",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 8,
+      "car_id": 8,
+      "issue_description": "Wash & service",
+      "cost": 30,
+      "status": "DONE",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 9,
+      "car_id": 9,
+      "issue_description": "General check",
+      "cost": 25,
+      "status": "DONE",
+      "maintenance_date": "2026-06-28"
+    },
+    {
+      "maintenance_id": 10,
+      "car_id": 10,
+      "issue_description": "Engine oil leak fix",
+      "cost": 150,
+      "status": "PENDING",
+      "maintenance_date": "2026-06-28"
+    }
+  ],
+  "insurance": [
+    {
+      "insurance_id": 1,
+      "car_id": 1,
+      "provider": "AXA",
+      "expiry_date": "2027-06-28",
+      "cost": 200
+    },
+    {
+      "insurance_id": 2,
+      "car_id": 2,
+      "provider": "AXA",
+      "expiry_date": "2027-06-28",
+      "cost": 180
+    },
+    {
+      "insurance_id": 3,
+      "car_id": 3,
+      "provider": "Allianz",
+      "expiry_date": "2027-06-28",
+      "cost": 220
+    },
+    {
+      "insurance_id": 4,
+      "car_id": 4,
+      "provider": "AXA",
+      "expiry_date": "2027-06-28",
+      "cost": 250
+    },
+    {
+      "insurance_id": 5,
+      "car_id": 5,
+      "provider": "Allianz",
+      "expiry_date": "2027-06-28",
+      "cost": 300
+    },
+    {
+      "insurance_id": 6,
+      "car_id": 6,
+      "provider": "AXA",
+      "expiry_date": "2027-06-28",
+      "cost": 280
+    },
+    {
+      "insurance_id": 7,
+      "car_id": 7,
+      "provider": "AXA",
+      "expiry_date": "2027-06-28",
+      "cost": 150
+    },
+    {
+      "insurance_id": 8,
+      "car_id": 8,
+      "provider": "Tesla Insurance",
+      "expiry_date": "2027-06-28",
+      "cost": 400
+    },
+    {
+      "insurance_id": 9,
+      "car_id": 9,
+      "provider": "AXA",
+      "expiry_date": "2027-06-28",
+      "cost": 160
+    },
+    {
+      "insurance_id": 10,
+      "car_id": 10,
+      "provider": "Allianz",
+      "expiry_date": "2027-06-28",
+      "cost": 210
+    }
+  ],
+  "rental_audit": [
+    {
+      "audit_id": 1,
+      "rental_id": 1,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-25"
+    },
+    {
+      "audit_id": 2,
+      "rental_id": 2,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-26"
+    },
+    {
+      "audit_id": 3,
+      "rental_id": 3,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-24"
+    },
+    {
+      "audit_id": 4,
+      "rental_id": 4,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-27"
+    },
+    {
+      "audit_id": 5,
+      "rental_id": 5,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-28"
+    },
+    {
+      "audit_id": 6,
+      "rental_id": 6,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-26"
+    },
+    {
+      "audit_id": 7,
+      "rental_id": 7,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-25"
+    },
+    {
+      "audit_id": 8,
+      "rental_id": 8,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-28"
+    },
+    {
+      "audit_id": 9,
+      "rental_id": 9,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-26"
+    },
+    {
+      "audit_id": 10,
+      "rental_id": 10,
+      "action": "RENTAL CREATED",
+      "action_date": "2026-06-28"
+    }
+  ]
+}

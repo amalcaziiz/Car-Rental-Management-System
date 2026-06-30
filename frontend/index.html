@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Management System</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- ================= AUTHENTICATION PORTAL ================= -->
+    <div id="auth-portal" class="auth-portal">
+        <div class="auth-card glass-panel">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="fa-solid fa-car-rear logo-icon"></i>
+                    <span>Apex Rentals</span>
+                </div>
+                <h2>Welcome Back</h2>
+                <p>Log in or sign up to manage the fleet and rentals.</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <div class="input-group">
+                    <label for="login-username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="login-username" required placeholder="e.g. admin1 or staff1">
+                </div>
+                <div class="input-group">
+                    <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                <p class="auth-switch">Don't have an account? <a href="#" id="to-signup">Sign Up</a></p>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form">
+                <div class="input-group">
+                    <label for="signup-username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="signup-username" required placeholder="Choose username">
+                </div>
+                <div class="input-group">
+                    <label for="signup-password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="signup-password" required placeholder="Choose password">
+                </div>
+                <div class="input-group">
+                    <label for="signup-role"><i class="fa-solid fa-user-shield"></i> Role</label>
+                    <select id="signup-role" required>
+                        <option value="STAFF">Staff Member</option>
+                        <option value="ADMIN">Administrator</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                <p class="auth-switch">Already have an account? <a href="#" id="to-login">Log In</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MAIN APP LAYOUT ================= -->
+    <div id="app-layout" class="app-layout hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass-panel">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fa-solid fa-car-rear logo-icon"></i>
+                    <span>Apex Rentals</span>
+                </div>
+            </div>
+
+            <!-- Profile Widget -->
+            <div class="profile-widget">
+                <div class="profile-avatar">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h4 id="user-display-name">Username</h4>
+                    <span id="user-role-badge" class="role-badge staff">STAFF</span>
+                </div>
+                <button id="logout-btn" class="logout-btn" title="Log Out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active" data-tab="dashboard">
+                        <a href="#"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    </li>
+                    <li data-tab="cars">
+                        <a href="#"><i class="fa-solid fa-car"></i> Fleet (Cars)</a>
+                    </li>
+                    <li data-tab="customers">
+                        <a href="#"><i class="fa-solid fa-users"></i> Customers</a>
+                    </li>
+                    <li data-tab="rentals">
+                        <a href="#"><i class="fa-solid fa-key"></i> Rentals</a>
+                    </li>
+                    <li data-tab="payments">
+                        <a href="#"><i class="fa-solid fa-wallet"></i> Payments & Audits</a>
+                    </li>
+                    <li data-tab="maintenance">
+                        <a href="#"><i class="fa-solid fa-wrench"></i> Maintenance</a>
+                    </li>
+                    <li data-tab="insurance" class="admin-only">
+                        <a href="#"><i class="fa-solid fa-shield-halved"></i> Insurance</a>
+                    </li>
+                    <li data-tab="users" class="admin-only">
+                        <a href="#"><i class="fa-solid fa-user-gear"></i> System Users</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <p>System Version 1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar glass-panel">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="top-bar-actions">
+                    <span class="system-time"><i class="fa-regular fa-clock"></i> <span id="clock">00:00:00</span></span>
+                    <button class="btn btn-secondary refresh-btn" id="refresh-state-btn" title="Reset/Seed Database">
+                        <i class="fa-solid fa-arrows-rotate"></i> Reset DB Seeds
+                    </button>
+                </div>
+            </header>
+
+            <!-- TABS CONTAINER -->
+            <div class="tab-wrapper">
+
+                <!-- 1. DASHBOARD TAB -->
+                <section id="tab-dashboard" class="tab-pane active">
+                    <!-- KPI Cards Grid -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card glass-panel gradient-border">
+                            <div class="kpi-icon icon-blue"><i class="fa-solid fa-car"></i></div>
+                            <div class="kpi-data">
+                                <h3>Total Cars</h3>
+                                <p id="kpi-total-cars">0</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card glass-panel gradient-border">
+                            <div class="kpi-icon icon-green"><i class="fa-solid fa-key"></i></div>
+                            <div class="kpi-data">
+                                <h3>Active Rentals</h3>
+                                <p id="kpi-active-rentals">0</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card glass-panel gradient-border">
+                            <div class="kpi-icon icon-yellow"><i class="fa-solid fa-wrench"></i></div>
+                            <div class="kpi-data">
+                                <h3>In Maintenance</h3>
+                                <p id="kpi-maintenance-cars">0</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card glass-panel gradient-border">
+                            <div class="kpi-icon icon-purple"><i class="fa-solid fa-dollar-sign"></i></div>
+                            <div class="kpi-data">
+                                <h3>Total Revenue</h3>
+                                <p id="kpi-revenue">$0.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts & Summary Layout -->
+                    <div class="dashboard-charts-layout">
+                        <!-- Chart 1: Fleet Status -->
+                        <div class="chart-container glass-panel">
+                            <h3>Fleet Status Distribution</h3>
+                            <div class="pie-chart-wrapper">
+                                <svg class="pie-chart-svg" id="chart-fleet-status" viewBox="0 0 100 100"></svg>
+                                <div class="pie-chart-legend" id="legend-fleet-status"></div>
+                            </div>
+                        </div>
+
+                        <!-- Chart 2: Revenue By Payment Method -->
+                        <div class="chart-container glass-panel">
+                            <h3>Revenue by Payment Method</h3>
+                            <div class="pie-chart-wrapper">
+                                <svg class="pie-chart-svg" id="chart-payment-method" viewBox="0 0 100 100"></svg>
+                                <div class="pie-chart-legend" id="legend-payment-method"></div>
+                            </div>
+                        </div>
+
+                        <!-- Chart 3: Car Categories -->
+                        <div class="chart-container glass-panel">
+                            <h3>Cars by Category</h3>
+                            <div class="pie-chart-wrapper">
+                                <svg class="pie-chart-svg" id="chart-categories" viewBox="0 0 100 100"></svg>
+                                <div class="pie-chart-legend" id="legend-categories"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Actions Log (Audits) -->
+                    <div class="recent-audits-section glass-panel">
+                        <div class="section-header">
+                            <h3>Recent Rental Audits (Oracle <code>trg_rental_audit</code> Simulation)</h3>
+                        </div>
+                        <div class="table-container scrollable">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Audit ID</th>
+                                        <th>Rental ID</th>
+                                        <th>Action Taken</th>
+                                        <th>Timestamp</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-audits-tbody">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. FLEET (CARS) TAB -->
+                <section id="tab-cars" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="cars-search-input" placeholder="Search by brand, model, plate...">
+                        </div>
+                        <div class="filter-group">
+                            <select id="cars-filter-status">
+                                <option value="">All Statuses</option>
+                                <option value="AVAILABLE">Available</option>
+                                <option value="RENTED">Rented</option>
+                                <option value="MAINTENANCE">Maintenance</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary add-car-btn admin-only" onclick="openCrudModal('cars')">
+                            <i class="fa-solid fa-plus"></i> Add New Car
+                        </button>
+                    </div>
+
+                    <div class="table-container glass-panel">
+                        <table class="data-table" id="cars-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Brand / Model</th>
+                                    <th>Year</th>
+                                    <th>Category</th>
+                                    <th>Plate Number</th>
+                                    <th>Daily Rate</th>
+                                    <th>Status</th>
+                                    <th class="actions-col admin-only">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cars-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 3. CUSTOMERS TAB -->
+                <section id="tab-customers" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="customers-search-input" placeholder="Search by name, phone, email, national ID...">
+                        </div>
+                        <button class="btn btn-primary" onclick="openCrudModal('customers')">
+                            <i class="fa-solid fa-user-plus"></i> Add Customer
+                        </button>
+                    </div>
+
+                    <div class="table-container glass-panel">
+                        <table class="data-table" id="customers-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Phone</th>
+                                    <th>Email Address</th>
+                                    <th>National ID</th>
+                                    <th>Registration Date</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customers-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 4. RENTALS TAB -->
+                <section id="tab-rentals" class="tab-pane">
+                    <div class="rentals-layout">
+                        <!-- Booking Form Box -->
+                        <div class="rental-booking-box glass-panel">
+                            <h3>Create New Rental (Oracle <code>create_rental</code> / <code>safe_rental</code>)</h3>
+                            <form id="booking-form">
+                                <div class="form-row">
+                                    <div class="input-group">
+                                        <label for="booking-customer">Customer <span class="required">*</span></label>
+                                        <select id="booking-customer" required>
+                                            <option value="">Select Customer...</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="booking-car">Available Car <span class="required">*</span></label>
+                                        <select id="booking-car" required>
+                                            <option value="">Select Car...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="input-group">
+                                        <label for="booking-start-date">Start Date <span class="required">*</span></label>
+                                        <input type="date" id="booking-start-date" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="booking-end-date">End Date <span class="required">*</span></label>
+                                        <input type="date" id="booking-end-date" required>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic calculations -->
+                                <div class="booking-calc-panel">
+                                    <div class="calc-row">
+                                        <span>Daily Rate:</span>
+                                        <strong id="calc-daily-rate">$0.00</strong>
+                                    </div>
+                                    <div class="calc-row">
+                                        <span>Total Days:</span>
+                                        <strong id="calc-total-days">0 days</strong>
+                                    </div>
+                                    <div class="calc-row">
+                                        <span>Discount (5% for &ge;7 days):</span>
+                                        <strong id="calc-discount" class="discount-txt">$0.00</strong>
+                                    </div>
+                                    <hr class="divider">
+                                    <div class="calc-row total-row">
+                                        <span>Estimated Cost:</span>
+                                        <strong id="calc-total-cost">$0.00</strong>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary btn-block">Confirm Booking</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Return Vehicle Box -->
+                        <div class="rental-booking-box glass-panel" style="margin-top: 20px;">
+                            <h3>Return Vehicle (Oracle <code>return_car</code>)</h3>
+                            <form id="return-form">
+                                <div class="input-group">
+                                    <label for="return-rental-select">Select Active Rental *</label>
+                                    <select id="return-rental-select" required>
+                                        <option value="">Select Active Rental...</option>
+                                    </select>
+                                </div>
+                                <div class="form-actions" style="margin-top: 15px;">
+                                    <button type="submit" class="btn btn-secondary btn-block">Confirm Return</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Active Rentals List -->
+                        <div class="rental-list-box">
+                            <div class="action-bar">
+                                <div class="search-box">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <input type="text" id="rentals-search-input" placeholder="Search rentals (customer, brand)...">
+                                </div>
+                                <div class="filter-group">
+                                    <select id="rentals-filter-status">
+                                        <option value="">All Statuses</option>
+                                        <option value="ONGOING">Ongoing</option>
+                                        <option value="RETURNED">Returned</option>
+                                        <option value="CANCELLED">Cancelled</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="table-container glass-panel scrollable">
+                                <table class="data-table" id="rentals-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Customer</th>
+                                            <th>Car</th>
+                                            <th>Staff (User)</th>
+                                            <th>Dates</th>
+                                            <th>Days</th>
+                                            <th>Total Cost</th>
+                                            <th>Status</th>
+                                            <th class="actions-col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rentals-tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. PAYMENTS & AUDITS TAB -->
+                <section id="tab-payments" class="tab-pane">
+                    <div class="payments-dashboard-layout">
+                        <!-- Revenue summary -->
+                        <div class="kpi-grid">
+                            <div class="kpi-card glass-panel icon-green">
+                                <div class="kpi-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                                <div class="kpi-data">
+                                    <h3>Total Paid Amount</h3>
+                                    <p id="total-paid-display">$0.00</p>
+                                </div>
+                            </div>
+                            <div class="kpi-card glass-panel icon-yellow">
+                                <div class="kpi-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                                <div class="kpi-data">
+                                    <h3>Pending / Unpaid Rentals</h3>
+                                    <p id="unpaid-rentals-display">$0.00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Payments Grid -->
+                        <div class="payments-ledger glass-panel">
+                            <div class="action-bar">
+                                <h3>Payments Ledger</h3>
+                                <button class="btn btn-primary btn-sm admin-only" onclick="openCrudModal('payments')">
+                                    <i class="fa-solid fa-plus"></i> Record Payment Manually
+                                </button>
+                            </div>
+                            <div class="table-container scrollable">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Payment ID</th>
+                                            <th>Rental ID</th>
+                                            <th>Customer</th>
+                                            <th>Amount</th>
+                                            <th>Method</th>
+                                            <th>Payment Date</th>
+                                            <th class="actions-col admin-only">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="payments-tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- System Auditing Records -->
+                        <div class="audit-log-panel glass-panel">
+                            <h3>Full Rental Database Auditing Log (<code>rental_audit</code> Table)</h3>
+                            <div class="table-container scrollable">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Audit ID</th>
+                                            <th>Rental ID</th>
+                                            <th>Action Type</th>
+                                            <th>Action Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="full-audits-tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. MAINTENANCE TAB -->
+                <section id="tab-maintenance" class="tab-pane">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="maintenance-search-input" placeholder="Search by issue description or brand...">
+                        </div>
+                        <button class="btn btn-primary" onclick="openCrudModal('maintenance')">
+                            <i class="fa-solid fa-screwdriver-wrench"></i> Log Maintenance Issue
+                        </button>
+                    </div>
+
+                    <div class="table-container glass-panel">
+                        <table class="data-table" id="maintenance-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Car Details</th>
+                                    <th>Issue Description</th>
+                                    <th>Estimated Cost</th>
+                                    <th>Log Date</th>
+                                    <th>Status</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="maintenance-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 7. INSURANCE TAB (Admin Only) -->
+                <section id="tab-insurance" class="tab-pane admin-only">
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="insurance-search-input" placeholder="Search by provider or car...">
+                        </div>
+                        <button class="btn btn-primary" onclick="openCrudModal('insurance')">
+                            <i class="fa-solid fa-plus"></i> Add Insurance Policy
+                        </button>
+                    </div>
+
+                    <div class="table-container glass-panel">
+                        <table class="data-table" id="insurance-table">
+                            <thead>
+                                <tr>
+                                    <th>Policy ID</th>
+                                    <th>Car Details</th>
+                                    <th>Insurance Provider</th>
+                                    <th>Annual Cost</th>
+                                    <th>Expiry Date</th>
+                                    <th>Status</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="insurance-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 8. SYSTEM USERS TAB (Admin Only) -->
+                <section id="tab-users" class="tab-pane admin-only">
+                    <div class="action-bar">
+                        <h3>User Account Database (Admin View)</h3>
+                        <button class="btn btn-primary" onclick="openCrudModal('users')">
+                            <i class="fa-solid fa-user-plus"></i> Add Admin / Staff Account
+                        </button>
+                    </div>
+
+                    <div class="table-container glass-panel">
+                        <table class="data-table" id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Username</th>
+                                    <th>Role Badge</th>
+                                    <th>Creation Date</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= EDIT/CREATE MODALS (DYNAMIC CRUD FORM) ================= -->
+    <div id="crud-modal-overlay" class="modal-overlay hidden">
+        <div class="modal-card glass-panel animated zoomIn">
+            <div class="modal-header">
+                <h3 id="modal-title">Create Item</h3>
+                <button class="close-btn" onclick="closeCrudModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="crud-dynamic-form">
+                    <input type="hidden" id="crud-entity-type">
+                    <input type="hidden" id="crud-entity-id">
+
+                    <!-- Form Body populated dynamically in app.js -->
+                    <div id="dynamic-form-fields"></div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeCrudModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="app.js"></script>
+</body>
+</html>
