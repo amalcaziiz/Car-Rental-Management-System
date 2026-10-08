@@ -1,7 +1,7 @@
 /**
  * Car Rental Management System - Frontend App Client
  * Integrates with Node.js Express Backend APIs
- * Author: Amal Bashir Abdi / Gemini Antigravity
+ * Author: Amal Bashir Abdi 
  */
 
 const API_BASE = '/api';
