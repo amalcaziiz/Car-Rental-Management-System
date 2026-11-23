@@ -57,10 +57,10 @@ The SQL script also includes examples of explicit cursors, cursor FOR loops, %RO
 Full script: sql/car_rental_schema.sql
 
 Project Structure
-├── backend/        Express server and API
-├── frontend/       HTML, CSS, and JavaScript interface
-├── sql/            Database schema, triggers, procedures, and sample data
-└── screenshots/    Images used in this README
+ backend/        Express server and API
+ frontend/       HTML, CSS, and JavaScript interface
+ sql/            Database schema, triggers, procedures, and sample data
+ screenshots/    Images used in this README
 Getting Started
 Prerequisites
 Node.js (LTS version)
@@ -71,7 +71,7 @@ bash
 git clone https://github.com/amalcaziiz/Car-Rental-Management-System.git
 cd Car-Rental-Management-System
 Create the database objects. Open sql/car_rental_schema.sql in SQL Developer, connected as your database user, and run it as a script (F5). This creates the tables, triggers, procedures, and sample data.
-Configure your environment. Copy .env.example to .env and fill in your own database details. Never commit the .env file.
+Configure your environment. Copy .env.example to .env and fill in your own database details.
 Install dependencies and start the server
 bash
 cd backend
